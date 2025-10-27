@@ -33,32 +33,6 @@ A web-based AI system that classifies brain MRI scans into different tumor types
 - **Amazon S3** - Dataset storage
 - **IAM** - Security and permissions
 
-## 📁 Project Structure
-
-brain-tumor-detection-ai/
-├── frontend/
-│   ├── index.html              # Main application UI
-│   ├── app.js                  # Frontend logic and API integration
-│   ├── styles.css              # Styling for the web interface
-│   └── assets/                 # Images, icons, and other static resources
-│
-├── backend/
-│   ├── lambda/
-│   │   └── classifier.py       # AWS Lambda function for image classification
-│   └── api-gateway/            # API Gateway configuration files
-│
-├── dataset/
-│   ├── glioma/                 # Training images for Glioma category
-│   ├── meningioma/             # Training images for Meningioma category
-│   ├── pituitary/              # Training images for Pituitary category
-│   └── notumor/                # Training images for Non-tumor images
-│
-├── docs/
-│   └── setup-guide.md          # Step-by-step deployment and setup guide
-│
-└── README.md                   # Project overview and documentation
-
-
 ## 📊 Model Evaluation Results
 
 F1 Score: 0.998
