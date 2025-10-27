@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain MRI Tumor Classification System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-icon"ṭ>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                        <path d="M12 8v4l3 3"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </div>
+                <div class="header-text">
+                    <h1>Brain MRI Tumor Classification System</h1>
+                    <p class="subtitle">AI-Powered Diagnostic Support Tool</p>
+                </div>
+            </div>
+            <div class="disclaimer-banner">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                <span><strong>Medical Disclaimer:</strong> This tool is for educational and research purposes only. Always consult with a qualified healthcare professional for medical diagnosis and treatment.</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="info-section" id="howItWorks">
+                <h2>How It Works</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-number">1</div>
+                        <h3>Upload MRI Scan</h3>
+                        <p>Upload a brain MRI image in JPG, PNG, or JPEG format (max 5MB)</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-number">2</div>
+                        <h3>AI Analysis</h3>
+                        <p>Our AI model analyzes the image using advanced deep learning algorithms</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-number">3</div>
+                        <h3>Get Results</h3>
+                        <p>Receive classification and detailed medical recommendations</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-number">4</div>
+                        <h3>Consult Professional</h3>
+                        <p>Use results to facilitate discussion with healthcare provider</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="upload-section" id="uploadSection">
+                <h2>Upload Brain MRI Image</h2>
+                
+                <div class="upload-zone" id="uploadZone">
+                    <input type="file" id="fileInput" accept="image/jpeg,image/jpg,image/png" hidden>
+                    <div class="upload-content" id="uploadContent">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        <h3>Drag &amp; Drop MRI Image Here</h3>
+                        <p>or</p>
+                        <button class="btn btn-secondary" id="browseBtn" type="button">Browse Files</button>
+                        <p class="upload-info">Supported formats: JPG, PNG, JPEG (Max size: 10MB)</p>
+                    </div>
+                    
+                    <div class="preview-content" id="previewContent" style="display: none;">
+                        <img id="imagePreview" src="" alt="MRI Preview">
+                        <div class="preview-actions">
+                            <p class="file-name" id="fileName"></p>
+                            <button class="btn btn-outline" id="changeImageBtn" type="button">Change Image</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upload-actions">
+                    <button class="btn btn-primary btn-large" id="analyzeBtn" disabled type="button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        Analyze Image
+                    </button>
+                    <button class="btn btn-outline" id="sampleImageBtn" type="button">Load Sample Image</button>
+                </div>
+            </section>
+
+            <section class="loading-section" id="loadingSection" style="display: none;">
+                <div class="loading-spinner"></div>
+                <h3>Analyzing MRI Scan...</h3>
+                <p>This may take a few moments. Please wait.</p>
+            </section>
+
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2>Classification Results</h2>
+                    <div class="results-actions">
+                        <button class="btn btn-outline btn-small" id="printBtn" type="button">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 6 2 18 2 18 9"/>
+                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                                <rect x="6" y="14" width="12" height="8"/>
+                            </svg>
+                            Print Results
+                        </button>
+                        <button class="btn btn-primary btn-small" id="analyzeAnotherBtn" type="button">Analyze Another Image</button>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-main">
+                        <div class="result-badge" id="resultBadge"></div>
+                        <div class="result-info">
+                            <h3 id="resultTitle">Tumor Type</h3>
+                            <p id="resultDescription">Description</p>
+                        </div>
+                    </div>
+                    <div class="result-severity" id="resultSeverity"></div>
+                </div>
+
+                <div class="tabs-container">
+                    <div class="tabs-nav" id="tabsNav">
+                        <button class="tab-btn active" data-tab="overview" type="button">Overview</button>
+                        <button class="tab-btn" data-tab="symptoms" type="button">Symptoms</button>
+                        <button class="tab-btn" data-tab="actions" type="button">Immediate Actions</button>
+                        <button class="tab-btn" data-tab="treatment" type="button">Treatment Options</button>
+                        <button class="tab-btn" data-tab="prognosis" type="button">Prognosis</button>
+                        <button class="tab-btn" data-tab="monitoring" type="button">Monitoring</button>
+                        <button class="tab-btn" data-tab="lifestyle" type="button">Lifestyle</button>
+                    </div>
+
+                    <div class="tabs-content" id="tabsContent">
+                    </div>
+                </div>
+            </section>
+
+            <section class="error-section" id="errorSection" style="display: none;">
+                <div class="error-card">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="15" y1="9" x2="9" y2="15"/>
+                        <line x1="9" y1="9" x2="15" y2="15"/>
+                    </svg>
+                    <h3>Analysis Failed</h3>
+                    <p id="errorMessage">An error occurred during analysis.</p>
+                    <button class="btn btn-primary" id="retryBtn" type="button">Try Again</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Important Notice</h4>
+                    <p>This AI diagnostic tool should not replace professional medical advice. Always consult qualified healthcare providers for diagnosis and treatment decisions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Emergency Contact</h4>
+                    <p>If you are experiencing a medical emergency, please call emergency services immediately or visit your nearest emergency room.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Version 1.0.0<br>&copy; 2025 Brain MRI Classification System</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
