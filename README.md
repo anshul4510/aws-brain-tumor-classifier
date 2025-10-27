@@ -2,6 +2,8 @@
 
 A web-based AI system that classifies brain MRI scans into different tumor types using AWS Rekognition Custom Labels and provides detailed medical insights.
 
+https://aws-brain-tumor-classifier.netlify.app/
+
 ## 🚀 Features
 
 - **AI-Powered Classification**: Uses AWS Rekognition Custom Labels for accurate tumor detection
